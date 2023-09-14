@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import uz.ruzibekov.mvi_compose_example.data.api.ApiService
+import uz.ruzibekov.mvi_compose_example.ui.screens.main.intent.MainEvent
 import uz.ruzibekov.mvi_compose_example.ui.screens.main.state.MainState
 import javax.inject.Inject
 
@@ -18,7 +19,15 @@ class MainViewModel @Inject constructor(
     private val _state: MutableStateFlow<MainState> = MutableStateFlow(MainState.Default)
     val state: StateFlow<MainState> = _state
 
-    fun fetchAuthors() = viewModelScope.launch {
+    fun send(event: MainEvent.FetchAuthors) {
+
+        when(event){
+
+            is MainEvent.FetchAuthors -> fetchAuthors()
+        }
+    }
+
+    private fun fetchAuthors() = viewModelScope.launch {
         _state.value = MainState.Loading
 
         try {

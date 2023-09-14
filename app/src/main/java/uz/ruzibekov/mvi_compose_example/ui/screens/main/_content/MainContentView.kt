@@ -9,7 +9,7 @@ import uz.ruzibekov.mvi_compose_example.ui.screens.main._components.DownloadButt
 import uz.ruzibekov.mvi_compose_example.ui.screens.main._components.EmptyListView
 import uz.ruzibekov.mvi_compose_example.ui.screens.main._components.ErrorView
 import uz.ruzibekov.mvi_compose_example.ui.screens.main._components.ProgressView
-import uz.ruzibekov.mvi_compose_example.ui.screens.main.intent.MainIntent
+import uz.ruzibekov.mvi_compose_example.ui.screens.main.intent.MainEvent
 import uz.ruzibekov.mvi_compose_example.ui.screens.main.state.MainState
 
 object MainContentView {
@@ -22,7 +22,7 @@ object MainContentView {
         when (state) {
 
             is MainState.Default -> DownloadButtonView.Default {
-                viewModel.fetchAuthors()
+                viewModel.send(MainEvent.FetchAuthors)
             }
 
             is MainState.Loading -> ProgressView.Default()

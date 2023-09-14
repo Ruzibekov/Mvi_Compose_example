@@ -1,6 +1,6 @@
 package uz.ruzibekov.mvi_compose_example.ui.screens.main.intent
 
-sealed class MainIntent {
+sealed class MainEvent {
 
-    object FetchAuthors : MainIntent()
+    object FetchAuthors : MainEvent()
 }
